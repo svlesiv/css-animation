@@ -1,0 +1,189 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: rgba(12, 12, 12, 1);
+  overflow: auto;
+  width: 90%;
+  padding: 5% 10%;
+  margin:auto;
+}
+
+/*3d text transitions and transforms*/
+.animated_text{
+  font-size: 4em;
+  font-weight: bolder;
+  position:absolute;
+  top: 15%;
+  left: 16%;
+  z-index:200;
+  width:300px;
+  color:rgba(95, 200, 192, 1);
+  perspective: 800px;
+  cursor: pointer;
+ }
+.animated_text span {
+   float: left;
+   padding-right: 5%;
+   transition: filter 100ms ease-out;
+}
+.animated_text span:hover{
+  /*transition inside hover to prevent moving back when it's not on a hover*/
+  /*whithout transition rotation is too fast, when is set to 360deg - not even visible*/
+  transition: transform 1s cubic-bezier(0.65, -0.50, 0.25, 1.50);
+  transform: rotateX(360deg);
+  filter: hue-rotate(180deg);
+}
+
+/*bird animation*/
+.bird1 {
+  z-index: 100;
+  width: 200px;
+  height:200px;
+  perspective: 1000px;
+  position:absolute;
+  bottom:20%;
+  left: 50%;
+  /*bird flying by Icons Producer from the Noun Project*/
+  background:transparent url("../img/bird1.svg") 0 0 no-repeat;
+  margin:3em auto;
+  overflow: hidden;
+  animation: bird_change_opacity_first 500ms ease-in-out infinite,
+             bird_fly 10s linear infinite backwards;
+}
+.bird2 {
+  z-index: 200;
+  width: 200px;
+  height:200px;
+  perspective: 1000px;
+  position:absolute;
+  bottom:25%;
+  left: 50%;
+  /*bird flying by Icons Producer from the Noun Project*/
+  background:transparent url("../img/bird2.svg") 0 0 no-repeat;
+  margin:3em auto;
+  overflow: hidden;
+  animation: bird_change_opacity_second 500ms ease-in-out infinite,
+             bird_fly 10s linear infinite backwards;
+}
+
+@keyframes bird_change_opacity_first{
+  from{opacity: 1;}
+  to{opacity: 0;}
+}
+@keyframes bird_change_opacity_second{
+  from{opacity: 0;}
+  to{opacity: 1;}
+}
+@keyframes bird_fly{
+  0%{
+    transform:translate(40px, -60px) rotateY(0deg) scale(0.8);
+    filter: brightness(0.5);
+  }
+  25%{
+    transform:translate(-250px, -10px) rotateY(0deg) scale(1);
+    filter: brightness(1);
+  }
+  49%{
+    transform:translate(-530px, 40px) rotateY(0deg) scale(0.8);
+    filter: brightness(0.3);
+  }
+  50%{
+    transform:translate(-530px, 40px) rotateY(-180deg) scale(0.8);
+    filter: brightness(0.3);
+  }
+  75%{
+    transform:translate(-250px, -10px) rotateY(-180deg) scale(1);
+    filter: brightness(1);
+  }
+  100%{
+    transform:translate(40px, -60px) rotateY(-180deg) scale(0.8);
+    filter: brightness(0.5);
+  }
+}
+
+/*clouds animation*/
+.cloud1 {
+    height: 200px;
+    width: 200px;
+    position:absolute;
+    bottom:20%;
+    left: 15%;
+    z-index:300;
+    /*Cloud by Viktor Vorobyev from the Noun Project*/
+    background:url("../img/cloud1.svg") no-repeat;
+    animation: cloud_move 20s ease-in-out infinite;
+}
+.cloud2 {
+    height: 100px;
+    width: 170px;
+    opacity: 0.3;
+    position:absolute;
+    bottom:50%;
+    left: 15%;
+    z-index:75;
+    /*Cloud by Agni from the Noun Project*/
+    background:url("../img/cloud2.svg") no-repeat;
+    animation: cloud_move 50s ease-in-out infinite;
+}
+
+@keyframes cloud_move{
+  from{transform:translateX(0)rotate(-2deg);}
+  to{transform:translateX(650px) rotate(2deg);}
+}
+
+/*sun animation*/
+#sun {
+    height: 200px;
+    width: 200px;
+    position:absolute;
+    top:15%;
+    left: 50%;
+    z-index:150;
+}
+#sun path:nth-child(n+2){
+  animation: sun_change_opacity 1s infinite,
+             sun_change_color 1s infinite;
+}
+#sun path:nth-child(even){
+  animation: sun_change_opacity 2s infinite,
+             sun_change_color 1s infinite;
+}
+#sun path:nth-child(1){
+  animation: sun_rotate 1s linear infinite alternate;
+}
+
+@keyframes sun_change_opacity{
+  from{fill-opacity: 1;}
+  to{fill-opacity: 0.7;}
+}
+@keyframes sun_change_color{
+  from{fill: #ff8d5a;}
+  to{fill:#f17395;}
+}
+@keyframes sun_rotate{
+  from {
+    transform: rotate(0deg);
+    transform-origin: 60% 55%;
+  }
+  to {
+    transform: rotate(30deg);
+    transform-origin: 60% 55%;
+  }
+}
+
+/*wave - svg object*/
+.wave {
+    height: 300px;
+    width: 800px;
+    position:absolute;
+    bottom:0%;
+    left: 13%;
+    z-index:-1;
+    /*waves by Nick Chouliaras from the Noun Project*/
+    background:url("../img/wave.svg") no-repeat;
+}
